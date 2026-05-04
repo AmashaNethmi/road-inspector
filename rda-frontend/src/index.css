@@ -92,6 +92,7 @@ h2 { font-size: 1.75rem; margin-bottom: 0.75rem; }
   padding: 2rem 1.5rem;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   z-index: 100;
 }
 

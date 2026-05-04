@@ -1,6 +1,6 @@
 import React from 'react';
 import { LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
-import { Activity, AlertTriangle, ShieldCheck, Map } from 'lucide-react';
+import { Activity, AlertTriangle, ShieldCheck, Map, Users } from 'lucide-react';
 
 const mockData = [
   { name: 'Mon', defects: 40, repaired: 24 },
@@ -12,7 +12,7 @@ const mockData = [
   { name: 'Sun', defects: 34, repaired: 43 },
 ];
 
-const Dashboard = () => {
+const Dashboard = ({ citizenReports = [] }) => {
   return (
     <div className="dashboard">
       <div className="module-header">
@@ -47,6 +47,14 @@ const Dashboard = () => {
           <span className="stat-value">LKR 4.2M</span>
           <span style={{color: 'var(--success)', fontSize: '0.875rem'}}>Saved this month</span>
         </div>
+        <div className="glass-panel stat-card">
+          <div style={{display: 'flex', justifyContent: 'space-between'}}>
+            <span className="stat-title">Citizen Reports Today</span>
+            <Users color="#f5a623" />
+          </div>
+          <span className="stat-value">{28 + citizenReports.length}</span>
+          <span style={{color: 'var(--text-muted)', fontSize: '0.875rem'}}>12 verified by AI</span>
+        </div>
       </div>
 
       <div className="dashboard-grid" style={{gridTemplateColumns: '2fr 1fr'}}>
@@ -79,16 +87,31 @@ const Dashboard = () => {
         </div>
 
         <div className="glass-panel">
-          <h3>Recent Priority Alerts</h3>
-          <div style={{display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem'}}>
+          <h3>Recent Alerts & Citizen Reports</h3>
+          <div style={{display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem', maxHeight: '400px', overflowY: 'auto'}}>
+            
+            {citizenReports.map(report => (
+              <div key={report.id} style={{padding: '1rem', background: 'rgba(255,255,255,0.03)', borderRadius: '8px', borderLeft: '3px solid #f5a623'}}>
+                <h4 style={{marginBottom: '0.25rem'}}>New Citizen Report</h4>
+                <p style={{fontSize: '0.875rem', color: 'var(--text-secondary)'}}>
+                  <strong>Location:</strong> {report.location} <br/>
+                  {report.description && <><span style={{marginTop: '0.25rem', display: 'block'}}>{report.description}</span></>}
+                  <span style={{color: 'var(--warning)', fontSize: '0.8rem', display: 'inline-block', marginTop: '0.5rem'}}>{report.status}</span>
+                </p>
+                {report.image && <img src={report.image} alt="Report" style={{marginTop: '0.75rem', width: '100%', height: '120px', objectFit: 'cover', borderRadius: '4px'}} />}
+              </div>
+            ))}
+
             <div style={{padding: '1rem', background: 'rgba(255,255,255,0.03)', borderRadius: '8px', borderLeft: '3px solid #ff4b4b'}}>
               <h4 style={{marginBottom: '0.25rem'}}>Critical Pothole - A1 Highway</h4>
-              <p style={{fontSize: '0.875rem', color: 'var(--text-secondary)'}}>Detected 10 mins ago. Volume: 0.15m³</p>
+              <p style={{fontSize: '0.875rem', color: 'var(--text-secondary)'}}>Detected by Edge Node 10 mins ago.</p>
             </div>
+            
             <div style={{padding: '1rem', background: 'rgba(255,255,255,0.03)', borderRadius: '8px', borderLeft: '3px solid #f5a623'}}>
-              <h4 style={{marginBottom: '0.25rem'}}>Heavy Rain Warning</h4>
-              <p style={{fontSize: '0.875rem', color: 'var(--text-secondary)'}}>Pausing 3 scheduled repairs tomorrow.</p>
+              <h4 style={{marginBottom: '0.25rem'}}>Citizen Report: Large Crater</h4>
+              <p style={{fontSize: '0.875rem', color: 'var(--text-secondary)'}}>Uploaded from Colombo 7. Awaiting AI verification.</p>
             </div>
+
             <div style={{padding: '1rem', background: 'rgba(255,255,255,0.03)', borderRadius: '8px', borderLeft: '3px solid #00f2fe'}}>
               <h4 style={{marginBottom: '0.25rem'}}>Material Delivery</h4>
               <p style={{fontSize: '0.875rem', color: 'var(--text-secondary)'}}>Asphalt arriving at Colombo Depot.</p>
