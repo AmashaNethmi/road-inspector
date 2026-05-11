@@ -4,6 +4,7 @@ import styles from './Sidebar.module.css';
 const navItems = [
   { icon: '📊', label: 'Dashboard', id: 'dashboard' },
   { icon: '🚦', label: 'Traffic Scheduling', id: 'traffic', active: true },
+  { icon: '📢', label: 'Citizen Reports', id: 'citizen_reports' },
   { icon: '📈', label: 'Analytics', id: 'analytics' },
   { icon: '📋', label: 'History', id: 'history' },
   { icon: '⚙️', label: 'Settings', id: 'settings' },
