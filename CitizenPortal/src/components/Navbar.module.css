@@ -2,7 +2,7 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(15, 23, 42, 0.8);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
   height: 72px;
@@ -29,7 +29,7 @@
 
 .logo {
   font-size: 24px;
-  background: #f1f5f9;
+  background: var(--bg-card);
   width: 44px;
   height: 44px;
   display: flex;
@@ -49,7 +49,7 @@
   font-weight: 500;
   font-size: 14px;
   margin-left: 4px;
-  background: rgba(37, 99, 235, 0.1);
+  background: rgba(251, 146, 60, 0.15);
   padding: 2px 8px;
   border-radius: 20px;
 }
@@ -82,7 +82,7 @@
 .pill {
   position: absolute;
   inset: 0;
-  background: rgba(37, 99, 235, 0.08);
+  background: rgba(251, 146, 60, 0.15);
   border-radius: 20px;
   z-index: -1;
 }

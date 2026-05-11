@@ -1,34 +1,63 @@
 .reportPage {
-  padding: 40px 20px;
-  min-height: calc(100vh - 72px);
+  min-height: 100vh;
   display: flex;
+  align-items: center;
   justify-content: center;
-  align-items: flex-start;
+  padding: 80px 24px;
+  background: radial-gradient(circle at top right, rgba(251, 146, 60, 0.05), transparent),
+              radial-gradient(circle at bottom left, rgba(30, 41, 59, 0.2), transparent);
 }
 
 .container {
-  max-width: 600px;
+  max-width: 650px;
   width: 100%;
-  background: white;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow);
-  padding: 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 32px;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+  padding: 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
 }
 
 .header {
   text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: 40px;
+}
+
+.categoryBadge {
+  display: inline-block;
+  background: rgba(251, 146, 60, 0.1);
+  color: var(--primary);
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
 }
 
 .title {
-  font-size: 28px;
-  font-weight: 700;
+  font-size: 32px;
+  font-weight: 800;
+  color: white;
   margin-bottom: 8px;
-  color: var(--text-main);
 }
 
 .subtitle {
   color: var(--text-muted);
+  font-size: 15px;
 }
 
 .form {
@@ -37,32 +66,193 @@
   gap: 24px;
 }
 
-.uploadSection {
+.inputCard {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  padding: 20px;
+  border-radius: 16px;
+  transition: all 0.2s;
+}
+
+.inputCard:focus-within {
+  border-color: var(--primary);
+  background: rgba(255,255,255,0.05);
+}
+
+.inputHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.inputIcon {
+  color: var(--primary);
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.input, .textarea {
   width: 100%;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-family: inherit;
+  outline: none;
+}
+
+.textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Upload Section */
+.uploadSection {
+  margin-bottom: 8px;
 }
 
 .imageCanvas {
   width: 100%;
-  height: 300px;
+  aspect-ratio: 16/9;
+  background: rgba(0,0,0,0.2);
   border: 2px dashed var(--border);
-  border-radius: var(--radius-md);
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.hasImage {
+  border: 1px solid var(--primary);
+  border-style: solid;
+}
+
+.emptyCanvas {
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  overflow: hidden;
-  position: relative;
-  transition: all 0.2s ease;
+  text-align: center;
+  padding: 40px;
 }
 
-.imageCanvas:hover {
-  border-color: var(--primary);
-  background: rgba(37, 99, 235, 0.02);
+.iconCircle {
+  width: 80px;
+  height: 80px;
+  background: rgba(251, 146, 60, 0.1);
+  color: var(--primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
-.hasImage {
+.canvasTitle {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.uploadPrompt {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 16px;
+}
+
+.liveCameraBtn, .uploadBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.liveCameraBtn {
+  background: var(--primary);
+  color: white;
+}
+
+.uploadBtn {
+  background: rgba(255,255,255,0.05);
   border: 1px solid var(--border);
+  color: white;
+}
+
+.liveCameraBtn:hover { transform: scale(1.05); }
+.uploadBtn:hover { background: rgba(255,255,255,0.1); }
+
+/* Camera UI */
+.cameraWrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.videoPreview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cameraControls {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.captureBtn {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.captureInner {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 2px solid #000;
+}
+
+.cancelBtn {
+  background: rgba(0,0,0,0.5);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  backdrop-filter: blur(4px);
+}
+
+/* Preview UI */
+.previewWrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
 .preview {
@@ -71,143 +261,106 @@
   object-fit: cover;
 }
 
-.removeBtn {
+.imageOverlay {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  background: var(--danger);
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.imageOverlay p {
+  font-weight: 700;
+  color: #10b981;
+}
+
+.removeBtn {
+  background: #ef4444;
   color: white;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
 }
 
-.emptyCanvas {
-  text-align: center;
-}
-
-.iconCircle {
-  width: 64px;
-  height: 64px;
-  background: rgba(37, 99, 235, 0.1);
-  color: var(--primary);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 16px;
-}
-
-.uploadPrompt {
-  font-weight: 600;
-  color: var(--text-main);
-  margin-bottom: 4px;
-}
-
-.uploadSub {
-  font-size: 13px;
-  color: var(--text-muted);
-}
-
-.inputCard {
-  background: #f8fafc;
-  padding: 16px;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border);
-}
-
+/* Location UI */
 .row {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
 }
 
 .iconBox {
   width: 48px;
   height: 48px;
+  background: rgba(251, 146, 60, 0.1);
+  color: var(--primary);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
 }
 
 .details {
-  flex-grow: 1;
-}
-
-.label {
-  display: block;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text-muted);
-  margin-bottom: 4px;
+  flex: 1;
 }
 
 .locationValue {
-  font-weight: 600;
-  color: var(--text-main);
+  font-weight: 700;
+  color: white;
+  font-size: 14px;
 }
 
 .accuracy {
-  font-size: 12px;
-  color: var(--accent);
-  font-weight: 500;
-}
-
-.locationPlaceholder {
   color: var(--text-muted);
-  font-size: 14px;
+  font-weight: 400;
+  font-size: 12px;
 }
 
 .locationBtn {
-  background: white;
+  background: rgba(255,255,255,0.05);
   border: 1px solid var(--border);
+  color: white;
   padding: 8px 16px;
   border-radius: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text-main);
+  font-weight: 700;
+  font-size: 13px;
 }
 
-.locationBtn:hover {
-  background: #f1f5f9;
-}
+.locationBtn:hover { background: rgba(255,255,255,0.1); }
 
-.textarea {
-  width: 100%;
-  min-height: 100px;
-  background: transparent;
-  border: none;
-  font-family: inherit;
-  font-size: 15px;
-  resize: vertical;
-  color: var(--text-main);
-  outline: none;
+/* Submit Section */
+.securityNote {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 12px;
 }
 
 .submitBtn {
-  background: var(--primary);
+  background: linear-gradient(90deg, var(--primary), var(--primary-dark));
   color: white;
-  padding: 16px;
-  border-radius: var(--radius-md);
-  font-size: 16px;
-  font-weight: 700;
+  padding: 18px;
+  border-radius: 16px;
+  font-size: 18px;
+  font-weight: 800;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  margin-top: 12px;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 10px 30px rgba(251, 146, 60, 0.3);
+  margin-top: 10px;
 }
 
 .submitBtn:hover:not(:disabled) {
-  background: var(--primary-dark);
   transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(251, 146, 60, 0.4);
 }
 
 .submitBtn:disabled {
@@ -216,35 +369,37 @@
 }
 
 .spinner {
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  animation: rotate 1s linear infinite;
 }
 
 .overlay {
   position: fixed;
   inset: 0;
   background: rgba(15, 23, 42, 0.8);
-  backdrop-filter: blur(4px);
-  z-index: 2000;
+  backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 2000;
+  padding: 24px;
 }
 
 .successCard {
-  background: white;
-  padding: 40px;
-  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--primary);
+  padding: 48px;
+  border-radius: 32px;
   text-align: center;
   max-width: 400px;
-  box-shadow: var(--shadow);
+  box-shadow: 0 40px 100px rgba(0,0,0,0.8);
 }
 
 .successIcon {
   font-size: 64px;
   margin-bottom: 24px;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }

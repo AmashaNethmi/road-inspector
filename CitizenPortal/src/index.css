@@ -1,21 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --primary: #2563eb;
-  --primary-dark: #1d4ed8;
-  --secondary: #64748b;
-  --accent: #10b981;
-  --danger: #ef4444;
-  --warning: #f59e0b;
-  --bg-main: #f8fafc;
-  --bg-card: #ffffff;
-  --text-main: #0f172a;
-  --text-muted: #64748b;
-  --border: #e2e8f0;
+  --primary: #fb923c; /* Bright Safety Orange */
+  --primary-dark: #f97316; 
+  --secondary: #94a3b8;
+  --accent: #facc15; /* Safety Yellow */
+  --danger: #f87171;
+  --warning: #fbbf24;
+  --bg-main: #0f172a; /* Deep Asphalt/Navy */
+  --bg-card: #1e293b; /* Slate Card */
+  --text-main: #f1f5f9; /* Light Grey Text */
+  --text-muted: #94a3b8;
+  --border: rgba(255, 255, 255, 0.1);
   --radius-sm: 8px;
   --radius-md: 12px;
-  --radius-lg: 20px;
-  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --radius-lg: 24px;
+  --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
 }
 
 * {

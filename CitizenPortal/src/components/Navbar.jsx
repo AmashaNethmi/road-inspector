@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion';
-import { Camera, Home, Info, HelpCircle } from 'lucide-react';
+import { Camera, Home, Info, HelpCircle, LayoutDashboard } from 'lucide-react';
 import styles from './Navbar.module.css';
 
 export default function Navbar({ activePage, onNavigate }) {
   const navItems = [
     { id: 'home', label: 'Home', icon: Home },
     { id: 'report', label: 'Report Issue', icon: Camera },
+    { id: 'admin', label: 'Admin Panel', icon: LayoutDashboard },
     { id: 'about', label: 'About Us', icon: Info },
     { id: 'faq', label: 'FAQ', icon: HelpCircle },
   ];

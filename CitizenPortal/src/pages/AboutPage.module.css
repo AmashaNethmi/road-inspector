@@ -1,0 +1,161 @@
+.aboutPage {
+  background: var(--bg-main);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Hero */
+.hero {
+  padding: 120px 0 80px;
+  text-align: center;
+  background: radial-gradient(circle at 50% 0%, rgba(251, 146, 60, 0.1), transparent 70%);
+}
+
+.title {
+  font-size: 64px;
+  font-weight: 800;
+  margin-bottom: 24px;
+  line-height: 1.1;
+}
+
+.title span {
+  color: var(--primary);
+}
+
+.subtitle {
+  font-size: 20px;
+  color: var(--text-muted);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Mission */
+.mission {
+  padding: 100px 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.accentBadge {
+  color: var(--primary);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.textBlock h2 {
+  font-size: 48px;
+  font-weight: 800;
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+
+.textBlock p {
+  font-size: 18px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+
+.values {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.valueItem {
+  display: flex;
+  gap: 20px;
+}
+
+.valueIcon {
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.valueItem h4 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.valueItem p {
+  font-size: 15px;
+  margin-bottom: 0;
+}
+
+/* Visuals */
+.visualBlock {
+  position: relative;
+}
+
+.mainImg {
+  width: 100%;
+  border-radius: 32px;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+}
+
+.experienceCard {
+  position: absolute;
+  bottom: -30px;
+  left: 40px;
+  background: var(--primary);
+  color: white;
+  padding: 30px;
+  border-radius: 24px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(251, 146, 60, 0.4);
+}
+
+.experienceCard h3 {
+  font-size: 36px;
+  font-weight: 800;
+}
+
+.experienceCard p {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Stats */
+.stats {
+  padding: 80px 0 120px;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.statBox {
+  background: var(--bg-card);
+  padding: 40px;
+  border-radius: 24px;
+  text-align: center;
+  border: 1px solid var(--border);
+}
+
+.statBox h3 {
+  font-size: 32px;
+  font-weight: 800;
+  margin: 16px 0 8px;
+  color: var(--primary);
+}
+
+.statBox p {
+  color: var(--text-muted);
+  font-weight: 600;
+}

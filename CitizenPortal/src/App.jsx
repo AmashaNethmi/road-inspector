@@ -2,6 +2,9 @@ import { useState } from 'react';
 import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 import ReportPage from './pages/ReportPage';
+import AdminPage from './pages/AdminPage';
+import AboutPage from './pages/AboutPage';
+import FAQPage from './pages/FAQPage';
 import styles from './App.module.css';
 
 // Simple Router-like state
@@ -14,20 +17,12 @@ export default function App() {
         return <HomePage onNavigate={setActivePage} />;
       case 'report':
         return <ReportPage />;
+      case 'admin':
+        return <AdminPage />;
       case 'about':
-        return (
-          <div className={styles.placeholder}>
-            <h2>About Us</h2>
-            <p>We are a team dedicated to road safety through AI.</p>
-          </div>
-        );
+        return <AboutPage />;
       case 'faq':
-        return (
-          <div className={styles.placeholder}>
-            <h2>Frequently Asked Questions</h2>
-            <p>How do I report? Just snap a photo!</p>
-          </div>
-        );
+        return <FAQPage />;
       default:
         return <HomePage onNavigate={setActivePage} />;
     }
