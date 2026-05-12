@@ -6,7 +6,7 @@ export async function analyzeRepair(
 ): Promise<AnalysisResult> {
   
   try {
-    const response = await fetch('http://localhost:8000/predict_plan', {
+    const response = await fetch('http://localhost:8001/predict_plan', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -40,7 +40,7 @@ export async function analyzeRepair(
 
 export async function fetchHistory(): Promise<any[]> {
   try {
-    const response = await fetch('http://localhost:8000/history');
+    const response = await fetch('http://localhost:8001/history');
     if (!response.ok) return [];
     return await response.json();
   } catch (error) {
@@ -51,7 +51,7 @@ export async function fetchHistory(): Promise<any[]> {
 
 export async function searchLocation(query: string): Promise<{ lat: number, lng: number, display_name: string } | null> {
   try {
-    const response = await fetch(`http://localhost:8000/geocode?query=${encodeURIComponent(query)}`);
+    const response = await fetch(`http://localhost:8001/geocode?query=${encodeURIComponent(query)}`);
     if (!response.ok) return null;
     
     const data = await response.json();
@@ -72,7 +72,7 @@ export async function searchLocation(query: string): Promise<{ lat: number, lng:
 
 export async function reverseGeocode(lat: number, lng: number): Promise<string | null> {
   try {
-    const response = await fetch(`http://localhost:8000/reverse_geocode?lat=${lat}&lng=${lng}`);
+    const response = await fetch(`http://localhost:8001/reverse_geocode?lat=${lat}&lng=${lng}`);
     if (!response.ok) return null;
     
     const data = await response.json();
@@ -90,7 +90,7 @@ export async function autocompleteLocation(query: string): Promise<Array<{ lat: 
   if (!query.trim()) return [];
   
   try {
-    const response = await fetch(`http://localhost:8000/geocode?query=${encodeURIComponent(query)}`);
+    const response = await fetch(`http://localhost:8001/geocode?query=${encodeURIComponent(query)}`);
     if (!response.ok) return [];
     
     const data = await response.json();
@@ -110,7 +110,7 @@ export async function autocompleteLocation(query: string): Promise<Array<{ lat: 
 
 export async function calculateRoute(startLat: number, startLng: number, endLat: number, endLng: number): Promise<Array<[number, number]>> {
   try {
-    const response = await fetch(`http://localhost:8000/route?startLat=${startLat}&startLng=${startLng}&endLat=${endLat}&endLng=${endLng}`);
+    const response = await fetch(`http://localhost:8001/route?startLat=${startLat}&startLng=${startLng}&endLat=${endLat}&endLng=${endLng}`);
     if (!response.ok) return [];
     
     const data = await response.json();

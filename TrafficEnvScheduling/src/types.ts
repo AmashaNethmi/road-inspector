@@ -54,6 +54,12 @@ export interface RepairPlan {
     equipment: string[];
   };
   risks: string[];
+  automationRecommendation?: {
+    optimalWindow: string;
+    confidenceScore: number;
+    environmentalImpact: string;
+    referenceDatasets: Array<{name: string, url: string}>;
+  };
 }
 
 export interface AnalysisResult {
