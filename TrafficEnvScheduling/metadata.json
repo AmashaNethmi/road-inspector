@@ -1,0 +1,6 @@
+{
+  "name": "Road Inspector: Smart Repair Planner",
+  "description": "An AI-powered module for predicting road repair times and optimizing schedules based on weather, traffic, and defect severity.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}

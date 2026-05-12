@@ -1,0 +1,9 @@
+fastapi[standard]
+scikit-learn
+pandas
+numpy
+uvicorn
+motor
+dnspython
+requests
+python-dotenv
