@@ -127,18 +127,10 @@ export default function AnalysisSummary({ result }: { result: AnalysisResult }) 
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-8 mb-8">
+          <div className="mb-8">
             <div className="space-y-2">
               <span className="text-[10px] text-zinc-600 uppercase font-mono">Optimal Schedule Window</span>
-              <div className="text-lg font-bold text-orange-400 font-mono">{plan.automationRecommendation.optimalWindow}</div>
-            </div>
-            <div className="space-y-2">
-              <span className="text-[10px] text-zinc-600 uppercase font-mono">Model Confidence</span>
-              <div className="text-lg font-bold text-zinc-100 font-mono">{(plan.automationRecommendation.confidenceScore * 100).toFixed(0)}%</div>
-            </div>
-            <div className="space-y-2">
-              <span className="text-[10px] text-zinc-600 uppercase font-mono">Asphalt Curing Impact</span>
-              <div className="text-lg font-bold text-zinc-100 font-mono">{plan.automationRecommendation.environmentalImpact}</div>
+              <div className="text-xl font-bold text-orange-400 font-mono tracking-tight">{plan.automationRecommendation.optimalWindow}</div>
             </div>
           </div>
 

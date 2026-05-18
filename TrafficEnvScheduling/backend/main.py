@@ -103,14 +103,26 @@ async def predict_plan(data: DefectData):
     if sev_num >= 4:
         equipment.append("Heavy Excavator")
         
-    start_time = "Tonight at 10:00 PM" if data.temperature > 30 else "Tomorrow at 6:00 AM"
+    start_label = "Tonight at 10:00 PM" if data.temperature > 30 else "Tomorrow at 6:00 AM"
+    if predicted_hours > 6:
+        start_label += f" (Spans {int(np.ceil(predicted_hours / 6))} Days)"
+    
+    start_time = start_label
     
     # Logic for optimal window based on research
     # Reference: https://www.mdpi.com/2076-3417/10/11/3951/pdf
     # Asphalt requires > 10C and rising.
     
     is_optimal_temp = data.temperature >= 10 and data.temperature <= 35
-    optimal_window = "09:00 AM - 03:00 PM (Optimal curing temp)" if is_optimal_temp else "Night Shift (Requires heated compaction)"
+    
+    if is_optimal_temp:
+        if predicted_hours <= 6:
+            optimal_window = "09:00 AM - 03:00 PM (Single Shift)"
+        else:
+            shifts = int(np.ceil(predicted_hours / 6))
+            optimal_window = f"09:00 AM - 03:00 PM ({shifts} Day Shifts Required)"
+    else:
+        optimal_window = f"Night Shift - Approx. {predicted_hours}h (Requires heated compaction)"
     
     automation = {
         "optimalWindow": optimal_window,
@@ -123,10 +135,12 @@ async def predict_plan(data: DefectData):
         ]
     }
     
+    duration_note = f" This project requires {int(np.ceil(predicted_hours / 6))} shifts." if predicted_hours > 6 else ""
+    
     plan = {
         "estimatedDurationHours": predicted_hours,
         "suggestedStartTime": start_time,
-        "bestTimeRationale": "Based on historical weather and traffic models, this start time avoids peak congestion and aligns with optimal asphalt curing temperatures.",
+        "bestTimeRationale": f"Based on historical weather and traffic models, this start time avoids peak congestion and aligns with optimal asphalt curing temperatures.{duration_note}",
         "alternateRoute": "Deploy localized traffic diversion protocols around the designated repair coordinates.",
         "crewRecommendation": {
             "workers": workers,
