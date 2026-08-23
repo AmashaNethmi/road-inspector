@@ -1,0 +1,12 @@
+/docs
+/frontend
+/modules
+/RoadDefectDetection
+/shared
+/tests
+/scripts
+*.toml
+Makefile
+*.yml
+/data
+/backend
