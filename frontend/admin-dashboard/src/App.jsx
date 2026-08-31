@@ -208,16 +208,6 @@ export default function App() {
                     : <><span>🚀</span> Generate Engineering Estimate 📊</>
                   }
                 </button>
-                <button 
-                  onClick={fetchMockData} 
-                  type="button" 
-                  title="Simulate pulling data from Detection/Segmentation modules"
-                  style={{ padding: '0 15px', background: 'rgba(14, 165, 233, 0.1)', border: '1px solid rgba(14, 165, 233, 0.3)', borderRadius: '8px', color: '#0ea5e9', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 600, fontSize: '13px', transition: 'all 0.2s' }}
-                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(14, 165, 233, 0.2)' }}
-                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(14, 165, 233, 0.1)' }}
-                >
-                  <span>📡</span> Fetch Scanner Data
-                </button>
               </div>
 
               <div className="form-group">
