@@ -39,7 +39,7 @@ function MapEvents({ onLocationSelect }: { onLocationSelect: (lat: number, lng: 
   );
 }
 
-import { searchLocation, autocompleteLocation, reverseGeocode } from '../services/geminiService';
+import { searchLocation, autocompleteLocation, reverseGeocode } from '../services/mlService';
 
 export default function LocationPicker({ onLocationSelect }: LocationPickerProps) {
   const [searchQuery, setSearchQuery] = useState('');
@@ -175,8 +175,8 @@ export default function LocationPicker({ onLocationSelect }: LocationPickerProps
           ref={setMap}
         >
           <TileLayer
-            url={`https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}`}
-            attribution='&copy; <a href="https://maps.google.com/">Google Maps</a>'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
           <MapEvents onLocationSelect={(lat, lng, address) => {
             setPosition(new L.LatLng(lat, lng));

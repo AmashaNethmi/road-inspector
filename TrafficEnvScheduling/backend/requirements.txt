@@ -7,3 +7,4 @@ motor
 dnspython
 requests
 python-dotenv
+lightgbm
