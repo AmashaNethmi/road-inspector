@@ -1,0 +1,39 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Large files excluded for GitHub
+backend/models/depth_anything_v2_vits.pth
+backend/models/*.pth
+src/dataset/Train model/t576ydh9v8-4/
+src/dataset/images/
+backend/.python/
+backend/.venv/
+backend/tmp/
+backend/__pycache__/
+backend/uploads/
+backend/node_modules/
+.ruff_cache/
+*.pyc
+__pycache__/

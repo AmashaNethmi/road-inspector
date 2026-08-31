@@ -1,0 +1,51 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Node dependencies & builds
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+dist-ssr/
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Python environments, cache, temp files & binaries
+.python/
+**/.python/
+.venv/
+**/.venv/
+tmp/
+**/tmp/
+__pycache__/
+**/__pycache__/
+uploads/
+**/uploads/
+.ruff_cache/
+**/.ruff_cache/
+*.pyc
+
+# Large models / datasets
+*.pth
+**/models/*.pth
+backend/models/depth_anything_v2_vits.pth
+**/depth_anything_v2_vits.pth
+**/Train model/
+src/dataset/images/
+**/src/dataset/images/
