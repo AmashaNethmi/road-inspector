@@ -66,3 +66,28 @@ class Module3EstimationResult(BaseModel):
     optimized_cost_lkr: float = Field(description="MILP-optimised total cost (LKR)")
     contractor_markup_lkr: float = Field(default=0.0, description="Contractor markup overhead and profit (LKR)")
     carbon_kg_co2e: float = Field(description="Estimated carbon emissions (kg CO₂e)")
+
+
+# ── Full Pipeline Integration Schemas ──────────────────────────────────────────
+
+class DefectInfo(BaseModel):
+    defect_type: str = Field(description="Type of defect (e.g., Pothole, Crack)")
+    severity: str = Field(description="Severity (e.g., Low, Medium, High)")
+    bounding_box: List[float] = Field(description="[x1, y1, x2, y2]")
+
+class SegmentationInfo(BaseModel):
+    repair_area_sqm: float = Field(description="Calculated repair area (m²)")
+    repair_depth_m: float = Field(description="Estimated depth (m)")
+
+class TrafficSchedulingInfo(BaseModel):
+    traffic_level: str = Field(description="Current traffic density")
+    optimal_repair_window: str = Field(description="Recommended time window for repair")
+    reroute_suggested: bool = Field(description="Whether traffic needs rerouting")
+
+class FullPipelineResult(BaseModel):
+    """Integrated payload containing outputs from all 4 modules"""
+    
+    detection: DefectInfo
+    segmentation: SegmentationInfo
+    estimation: Module3EstimationResult
+    scheduling: TrafficSchedulingInfo

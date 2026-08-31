@@ -3,11 +3,18 @@ Road Inspector AI — FastAPI Entry Point
 Module 3: Intelligent Material & Heat Estimation System
 """
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
-from schemas import EstimationRequest, Module3EstimationResult
+from schemas import (
+    EstimationRequest, 
+    Module3EstimationResult, 
+    FullPipelineResult, 
+    DefectInfo, 
+    SegmentationInfo, 
+    TrafficSchedulingInfo
+)
 from module_3_estimation.material_heat import MaterialHeatEstimator
 from module_3_estimation.resource_allocation import ResourceAllocator
 
@@ -122,6 +129,54 @@ def estimate(payload: EstimationRequest) -> Module3EstimationResult:
 
     except Exception as exc:
         raise HTTPException(status_code=500, detail=str(exc)) from exc
+
+
+@app.post("/api/v1/full-pipeline", response_model=FullPipelineResult)
+async def run_full_pipeline(image: UploadFile = File(...)):
+    """
+    End-to-End Orchestrator:
+    Accepts an image and triggers all 4 modules sequentially.
+    (Currently using simulated AI inference until models are merged)
+    """
+    
+    # Module 1: Defect Detection (Mocked)
+    detection = DefectInfo(
+        defect_type="Severe Pothole",
+        severity="High",
+        bounding_box=[120.5, 45.2, 450.0, 310.8]
+    )
+    
+    # Module 2: Repair Area Segmentation (Mocked)
+    segmentation = SegmentationInfo(
+        repair_area_sqm=12.5,  # Calculated area from mask
+        repair_depth_m=0.06    # 6 cm depth
+    )
+    
+    # Module 3: Material & Resource Estimation (Real)
+    # We pass the outputs from Module 2 directly into Module 3!
+    estimation_req = EstimationRequest(
+        area_sqm=segmentation.repair_area_sqm,
+        depth_m=segmentation.repair_depth_m,
+        ambient_temp_c=31.0,
+        transport_time_hours=1.5,
+        humidity_pct=65.0,
+        execution_mode="contractor"
+    )
+    estimation = estimate(estimation_req) # Call existing endpoint function
+    
+    # Module 4: Traffic Scheduling (Mocked)
+    scheduling = TrafficSchedulingInfo(
+        traffic_level="Heavy",
+        optimal_repair_window="23:00 - 05:00",
+        reroute_suggested=True
+    )
+    
+    return FullPipelineResult(
+        detection=detection,
+        segmentation=segmentation,
+        estimation=estimation,
+        scheduling=scheduling
+    )
 
 
 # ── Dev server ───────────────────────────────────────────────────────────────

@@ -10,6 +10,7 @@ const MY_MODULES = [
   { key: 'settings',   label: 'Settings',            icon: '⚙️' },
 ]
 const TEAM_MODULES = [
+  { key: 'integration',  label: 'Full Pipeline Integration', icon: '🚀' },
   { key: 'segmentation', label: 'Repair Segmentation',  icon: '🔧' },
   { key: 'traffic',      label: 'Traffic Scheduling',   icon: '🚦' },
   { key: 'detection',    label: 'Defect Detection',     icon: '🔍' },
@@ -113,6 +114,49 @@ export default function App() {
     }
   }
 
+  // Integration Pipeline State
+  const [pipelineLoading, setPipelineLoading] = useState(false)
+  const [pipelineError, setPipelineError] = useState(null)
+  const [pipelineResult, setPipelineResult] = useState(null)
+  const [selectedImage, setSelectedImage] = useState(null)
+  const [imagePreview, setImagePreview] = useState(null)
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0]
+    if (file) {
+      setSelectedImage(file)
+      setImagePreview(URL.createObjectURL(file))
+    }
+  }
+
+  const handleRunPipeline = async () => {
+    if (!selectedImage) {
+      setPipelineError('Please upload an image of a road defect first.')
+      return
+    }
+    setPipelineError(null)
+    setPipelineLoading(true)
+    try {
+      const formData = new FormData()
+      formData.append('image', selectedImage)
+      
+      const res = await fetch('http://localhost:8000/api/v1/full-pipeline', {
+        method: 'POST',
+        body: formData
+      })
+      if (!res.ok) {
+        const err = await res.json()
+        throw new Error(err.detail || `HTTP ${res.status}`)
+      }
+      const data = await res.json()
+      setPipelineResult(data)
+    } catch (e) {
+      setPipelineError(e.message)
+    } finally {
+      setPipelineLoading(false)
+    }
+  }
+
   // Labour cost breakdown (derived from result)
   const laborCost    = result ? result.labor_hours * 2500 : 0
   const machineryCost = result ? result.num_trucks * 15000 + result.machinery_list.length * 25000 : 0
@@ -179,6 +223,7 @@ export default function App() {
             <div className="topbar-title">
               {activeNav === 'dashboard' && '📊 Dashboard'}
               {activeNav === 'estimation' && '✏️ Material Estimation'}
+              {activeNav === 'integration' && '🚀 Full Pipeline Integration'}
               {activeNav === 'analytics' && '📈 Analytics'}
               {activeNav === 'history' && '🗒️ History'}
               {activeNav === 'settings' && '⚙️ Settings'}
@@ -187,7 +232,8 @@ export default function App() {
               {activeNav === 'detection' && '🔍 Defect Detection'}
             </div>
             <div className="topbar-sub">
-              {activeNav === 'estimation' ? 'Module 3 — Intelligent BoQ Generation System' : 'Road Inspector Platform'}
+              {activeNav === 'estimation' ? 'Module 3 — Intelligent BoQ Generation System' : 
+               activeNav === 'integration' ? 'End-to-End Orchestrator (Modules 1 + 2 + 3 + 4)' : 'Road Inspector Platform'}
             </div>
           </div>
           {activeNav === 'estimation' && <div className="topbar-badge">CIDA SCA/5 · RDA HSR · MILP</div>}
@@ -439,6 +485,69 @@ export default function App() {
 
           </div>
           </>
+          ) : activeNav === 'integration' ? (
+            <div className="integration-view">
+              <div className="input-panel fade-up" style={{ width: '100%', marginBottom: '20px' }}>
+                <div className="card">
+                  <div className="card-title">Upload Defect Image</div>
+                  <input type="file" accept="image/*" onChange={handleImageChange} style={{ marginBottom: '15px' }} />
+                  {imagePreview && <img src={imagePreview} alt="Preview" style={{ maxWidth: '100%', maxHeight: '200px', borderRadius: '8px', display: 'block', marginBottom: '15px' }} />}
+                  <button className="btn-generate" onClick={handleRunPipeline} disabled={pipelineLoading}>
+                    {pipelineLoading ? <><span className="spin">⟳</span> Running Pipeline…</> : <><span>⚡</span> Run Full AI Pipeline</>}
+                  </button>
+                  {pipelineError && <div className="error-box fade-up" style={{marginTop:'15px'}}><span>⚠️</span> {pipelineError}</div>}
+                </div>
+              </div>
+
+              {pipelineResult && (
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }} className="fade-up">
+                  {/* Module 1 */}
+                  <div className="card">
+                    <div className="card-title" style={{color: '#3b82f6'}}>🔍 Module 1: Defect Detection</div>
+                    <div style={{marginTop:'10px'}}>
+                      <div><strong>Type:</strong> {pipelineResult.detection.defect_type}</div>
+                      <div><strong>Severity:</strong> <span className={`badge badge-${pipelineResult.detection.severity === 'High' ? 'amber' : 'blue'}`}>{pipelineResult.detection.severity}</span></div>
+                      <div style={{fontSize: '12px', color: '#888', marginTop:'5px'}}>BBox: {JSON.stringify(pipelineResult.detection.bounding_box)}</div>
+                    </div>
+                  </div>
+
+                  {/* Module 2 */}
+                  <div className="card">
+                    <div className="card-title" style={{color: '#8b5cf6'}}>🔧 Module 2: Repair Segmentation</div>
+                    <div style={{marginTop:'10px'}}>
+                      <div><strong>Repair Area:</strong> {pipelineResult.segmentation.repair_area_sqm} m²</div>
+                      <div><strong>Estimated Depth:</strong> {pipelineResult.segmentation.repair_depth_m} m</div>
+                    </div>
+                  </div>
+
+                  {/* Module 3 */}
+                  <div className="card">
+                    <div className="card-title" style={{color: '#10b981'}}>✏️ Module 3: Material Estimation</div>
+                    <div style={{marginTop:'10px'}}>
+                      <div><strong>HMA Required:</strong> {fmt(pipelineResult.estimation.hma_tonnes)} tonnes</div>
+                      <div><strong>Total Cost:</strong> LKR {fmtK(
+                        (pipelineResult.estimation.hma_tonnes * 15000) + 
+                        (pipelineResult.estimation.bitumen_liters * 150) + 
+                        (pipelineResult.estimation.aggregate_m3 * 3500) + 
+                        (pipelineResult.estimation.labor_hours * 2500) + 
+                        (pipelineResult.estimation.num_trucks * 15000 + pipelineResult.estimation.machinery_list.length * 25000)
+                      )}</div>
+                      <div><strong>Carbon Footprint:</strong> {fmt(pipelineResult.estimation.carbon_kg_co2e)} kg CO₂e</div>
+                    </div>
+                  </div>
+
+                  {/* Module 4 */}
+                  <div className="card">
+                    <div className="card-title" style={{color: '#f59e0b'}}>🚦 Module 4: Traffic Scheduling</div>
+                    <div style={{marginTop:'10px'}}>
+                      <div><strong>Traffic Level:</strong> {pipelineResult.scheduling.traffic_level}</div>
+                      <div><strong>Optimal Window:</strong> <span className="badge badge-green">{pipelineResult.scheduling.optimal_repair_window}</span></div>
+                      <div><strong>Reroute Needed:</strong> {pipelineResult.scheduling.reroute_suggested ? 'Yes 🚧' : 'No'}</div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
           ) : (
             <div className="placeholder fade-up" style={{ width: '100%', height: '100%' }}>
               <div className="placeholder-icon" style={{ opacity: 1, fontSize: '64px', filter: 'drop-shadow(0 0 20px rgba(255,255,255,0.1))', marginBottom: '16px' }}>
