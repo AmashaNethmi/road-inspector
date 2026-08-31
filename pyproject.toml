@@ -1,0 +1,38 @@
+[tool.pyrefly]
+site-package-path = [
+    "RepairAreaSegmentation/backend/.venv/Lib/site-packages"
+]
+search-path = [
+    ".",
+    "RepairAreaSegmentation/backend"
+]
+python-interpreter-path = "RepairAreaSegmentation/backend/.venv/Scripts/python.exe"
+ignore-missing-imports = [
+    "torch",
+    "torch.*",
+    "torchvision",
+    "torchvision.*",
+    "cv2",
+    "cv2.*",
+    "numpy",
+    "numpy.*",
+    "ultralytics",
+    "ultralytics.*"
+]
+
+[tool.pyrefly.errors]
+missing-import = "ignore"
+untyped-import = "ignore"
+
+[tool.pyright]
+venvPath = "RepairAreaSegmentation/backend"
+venv = ".venv"
+extraPaths = [
+    "RepairAreaSegmentation/backend",
+    "RepairAreaSegmentation/backend/.venv/Lib/site-packages"
+]
+typeCheckingMode = "off"
+reportMissingImports = "none"
+reportMissingTypeStubs = "none"
+reportAttributeAccessIssue = "none"
+reportGeneralTypeIssues = "none"
