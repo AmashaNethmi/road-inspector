@@ -1,0 +1,16 @@
+fastapi
+uvicorn[standard]
+pymongo
+pydantic
+torch
+torchvision
+ultralytics
+opencv-python-headless
+scikit-learn
+scipy
+xgboost
+numpy
+pandas
+python-multipart
+requests
+jupyter
