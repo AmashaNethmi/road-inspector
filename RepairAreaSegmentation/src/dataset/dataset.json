@@ -1,0 +1,82 @@
+[
+  {
+    "image": "src/dataset/images/potholes0.png",
+    "mask": "src/assets/segmentation_mask.png"
+  },
+  {
+    "image": "src/dataset/images/potholes1.png",
+    "mask": "src/assets/segmentation_mask.png"
+  },
+  {
+    "image": "src/dataset/images/potholes10.png",
+    "mask": "src/assets/segmentation_mask.png"
+  },
+  {
+    "image": "src/dataset/images/potholes100.png",
+    "mask": "src/assets/segmentation_mask.png"
+  },
+  {
+    "image": "src/dataset/images/potholes101.png",
+    "mask": "src/assets/segmentation_mask.png"
+  },
+  {
+    "image": "src/dataset/images/potholes102.png",
+    "mask": "src/assets/segmentation_mask.png"
+  },
+  {
+    "image": "src/dataset/images/potholes103.png",
+    "mask": "src/assets/segmentation_mask.png"
+  },
+  {
+    "image": "src/dataset/images/potholes104.png",
+    "mask": "src/assets/segmentation_mask.png"
+  },
+  {
+    "image": "src/dataset/images/potholes105.png",
+    "mask": "src/assets/segmentation_mask.png"
+  },
+  {
+    "image": "src/dataset/images/potholes106.png",
+    "mask": "src/assets/segmentation_mask.png"
+  },
+  {
+    "image": "src/dataset/images/potholes107.png",
+    "mask": "src/assets/segmentation_mask.png"
+  },
+  {
+    "image": "src/dataset/images/potholes108.png",
+    "mask": "src/assets/segmentation_mask.png"
+  },
+  {
+    "image": "src/dataset/images/potholes109.png",
+    "mask": "src/assets/segmentation_mask.png"
+  },
+  {
+    "image": "src/dataset/images/potholes11.png",
+    "mask": "src/assets/segmentation_mask.png"
+  },
+  {
+    "image": "src/dataset/images/potholes110.png",
+    "mask": "src/assets/segmentation_mask.png"
+  },
+  {
+    "image": "src/dataset/images/potholes111.png",
+    "mask": "src/assets/segmentation_mask.png"
+  },
+  {
+    "image": "src/dataset/images/potholes112.png",
+    "mask": "src/assets/segmentation_mask.png"
+  },
+  {
+    "image": "src/dataset/images/potholes113.png",
+    "mask": "src/assets/segmentation_mask.png"
+  },
+  {
+    "image": "src/dataset/images/potholes114.png",
+    "mask": "src/assets/segmentation_mask.png"
+  },
+  {
+    "image": "src/dataset/images/potholes115.png",
+    "mask": "src/assets/segmentation_mask.png"
+  }
+]

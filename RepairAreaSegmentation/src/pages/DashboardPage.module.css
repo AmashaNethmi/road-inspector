@@ -1,0 +1,203 @@
+.page {
+  flex: 1;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1550px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-top: 0.35rem;
+}
+
+.timestamp {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-lg);
+  background: var(--bg-input);
+  border: 1px solid var(--glass-border);
+}
+
+.topCards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(180px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  padding: 1.5rem;
+  border-radius: var(--radius-xl);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+.cardHeaderIcon {
+  font-size: 2rem;
+  padding: 0.75rem;
+  background: var(--bg-input);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--glass-border);
+}
+
+.cardLabel {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.4px;
+  color: var(--text-secondary);
+  margin-bottom: 0.25rem;
+}
+
+.card h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.detailGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.detailCard {
+  padding: 1.75rem;
+  border-radius: var(--radius-xl);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+.detailCard h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--glass-border);
+  padding-bottom: 0.75rem;
+}
+
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.activityItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  background: var(--bg-input);
+  border: 1px solid var(--glass-border);
+}
+
+.activityItem strong {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+
+.subtext {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+.badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 99px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.riskHigh {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.emptyList {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  padding: 2rem 0;
+}
+
+/* ACTIVE WORK PANEL */
+.activeSegmentPanel {
+  padding: 2rem;
+  border-radius: var(--radius-xl);
+  background: rgba(139, 92, 246, 0.05);
+  border: 1px dashed rgba(139, 92, 246, 0.4);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.activeSegmentPanel h3 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #8b5cf6;
+}
+
+.activeGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.activeMetric {
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.activeMetric span {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.activeMetric strong {
+  font-size: 1.05rem;
+  color: var(--text-primary);
+}
+
+.activeRisk {
+  color: #ec4899 !important;
+}
+
+@media (max-width: 1000px) {
+  .topCards,
+  .detailGrid,
+  .activeGrid {
+    grid-template-columns: 1fr;
+  }
+}
