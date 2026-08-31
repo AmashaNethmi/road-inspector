@@ -1,0 +1,32 @@
+# Pyrefly Configuration for Backend
+site-package-path = [
+    ".venv/Lib/site-packages"
+]
+
+search-path = [
+    "."
+]
+
+python-interpreter-path = ".venv/Scripts/python.exe"
+
+ignore-missing-imports = [
+    "torch",
+    "torch.*",
+    "torchvision",
+    "torchvision.*",
+    "cv2",
+    "cv2.*",
+    "numpy",
+    "numpy.*",
+    "ultralytics",
+    "ultralytics.*",
+    "scipy",
+    "scipy.*",
+    "sklearn",
+    "sklearn.*"
+]
+
+[errors]
+missing-import = "ignore"
+untyped-import = "ignore"
+bad-argument-type = "ignore"

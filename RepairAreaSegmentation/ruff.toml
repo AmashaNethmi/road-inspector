@@ -1,0 +1,29 @@
+target-version = "py311"
+line-length = 120
+exclude = [
+    ".venv",
+    ".python",
+    "node_modules",
+    "dist",
+    "build",
+    "__pycache__",
+    "dataset",
+    "src/dataset",
+]
+
+[lint]
+ignore = [
+    "E501",
+    "BLE001",
+    "S110",
+    "S112",
+    "RUF046",
+    "RUF059",
+    "RUF100",
+    "SIM115",
+    "PLR0402",
+    "UP006",
+    "UP035",
+    "I001",
+    "C414",
+]

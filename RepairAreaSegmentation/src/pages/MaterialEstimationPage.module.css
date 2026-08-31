@@ -1,0 +1,238 @@
+.page {
+  flex: 1;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+.clearBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius-lg);
+  background: var(--bg-input);
+  color: var(--text-secondary);
+  border: 1px solid var(--glass-border);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clearBtn:hover {
+  color: var(--text-primary);
+  border-color: #8b5cf6;
+}
+
+.telemetryAlert {
+  padding: 1.25rem;
+  border-radius: var(--radius-xl);
+  background: rgba(16, 185, 129, 0.06);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  color: #10b981;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.telemetryAlert strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.noTelemetry {
+  padding: 1.25rem;
+  border-radius: var(--radius-xl);
+  background: rgba(245, 158, 11, 0.05);
+  border: 1px dashed rgba(245, 158, 11, 0.25);
+  color: #f59e0b;
+  font-size: 0.9rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 450px 1fr;
+  gap: 2rem;
+}
+
+.card {
+  padding: 1.75rem;
+  border-radius: var(--radius-xl);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-bottom: 1px solid var(--glass-border);
+  padding-bottom: 0.75rem;
+}
+
+.cardHeader h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.icon {
+  color: #8b5cf6;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.formGroup label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.formGroup input {
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-lg);
+  background: var(--bg-input);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.formGroup input:focus {
+  border-color: #8b5cf6;
+}
+
+.readOnly {
+  background: rgba(255,255,255,0.02) !important;
+  color: var(--text-secondary) !important;
+  border-color: var(--border) !important;
+  cursor: not-allowed;
+}
+
+.helpText {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* RESULTS COLUMN */
+.resultsCard {
+  padding: 2rem;
+  border-radius: var(--radius-xl);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.resultsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #8b5cf6;
+  padding-bottom: 1rem;
+}
+
+.resultsHeader h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.totalPrice {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #ec4899;
+}
+
+.boqList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.boqItem {
+  display: flex;
+  align-items: center;
+  padding: 1.25rem;
+  border-radius: var(--radius-lg);
+  background: var(--bg-input);
+  border: 1px solid var(--glass-border);
+  transition: all 0.25s ease;
+}
+
+.boqItem:hover {
+  border-color: #8b5cf6;
+  transform: translateX(4px);
+}
+
+.boqIcon {
+  padding: 0.75rem;
+  border-radius: var(--radius-lg);
+  background: rgba(139, 92, 246, 0.1);
+  color: #8b5cf6;
+  margin-right: 1.25rem;
+}
+
+.boqInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+}
+
+.boqInfo strong {
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.boqInfo span {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.itemCost {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+@media (max-width: 1000px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
