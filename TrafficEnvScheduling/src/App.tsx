@@ -8,16 +8,6 @@ import { motion, AnimatePresence } from 'motion/react';
 import { 
   Loader2, 
   Zap, 
-  LayoutDashboard, 
-  History, 
-  Cloud, 
-  Calendar, 
-  GitPullRequest, 
-  BarChart, 
-  Activity,
-  Award,
-  Terminal,
-  Camera,
   Sun,
   ShieldCheck,
   TrendingUp,
@@ -37,20 +27,18 @@ import SchedulingDashboard from './components/SchedulingDashboard';
 import RoutingDashboard from './components/RoutingDashboard';
 import EvaluationDashboard from './components/EvaluationDashboard';
 import AnalyticsDashboard from './components/AnalyticsDashboard';
-import CitizenReportsDashboard from './components/CitizenReportsDashboard';
 import ResearchReport from './components/ResearchReport';
 import HistoryPanel from './components/HistoryPanel';
 import ExternalApiTester from './components/ExternalApiTester';
 
 import { analyzeRepair } from './services/mlService';
-import { AnalysisResult, DefectDetails, NavigationTab, CitizenReport, SurfaceType } from './types';
+import { AnalysisResult, DefectDetails, NavigationTab } from './types';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<NavigationTab>('plan');
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
   const [isAnalyzing, setIsAnalyzing] = useState<boolean>(false);
   const [result, setResult] = useState<AnalysisResult | null>(null);
-  const [selectedCitizenDefect, setSelectedCitizenDefect] = useState<DefectDetails | null>(null);
   const [backendHealthy, setBackendHealthy] = useState<boolean>(true);
 
   // Check backend health on mount
@@ -80,24 +68,6 @@ export default function App() {
     } finally {
       setIsAnalyzing(false);
     }
-  };
-
-  // Handler when user clicks "Auto-Plan with AI" in Citizen Reports
-  const handleSelectCitizenReportForPlanning = (report: CitizenReport) => {
-    const details: DefectDetails = {
-      location: `${report.coordinates.lat}, ${report.coordinates.lng}`,
-      coordinates: report.coordinates,
-      type: report.type.toLowerCase() as any,
-      size: { length: 1, width: 1, depth: report.actualSizeM3 },
-      actualSize: { length: 1, width: 1, depth: report.actualSizeM3 },
-      repairSize: { length: 1, width: 1, depth: report.repairSizeM3 },
-      finalArea: report.repairSizeM3,
-      surfaceMaterial: report.roadType || SurfaceType.ASPHALT,
-      severity: report.severity.toLowerCase() as any
-    };
-
-    setSelectedCitizenDefect(details);
-    setActiveTab('plan');
   };
 
   return (
@@ -187,7 +157,6 @@ export default function App() {
                     <div className="lg:col-span-4 lg:sticky lg:top-4 space-y-6">
                       <DefectForm
                         onSubmit={handleDefectSubmit}
-                        initialValues={selectedCitizenDefect}
                       />
                     </div>
 
@@ -254,21 +223,7 @@ export default function App() {
                 </motion.div>
               )}
 
-              {/* TAB 2: CITIZEN REPORTS & INGESTION */}
-              {activeTab === 'citizen' && (
-                <motion.div
-                  key="citizen"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                >
-                  <CitizenReportsDashboard
-                    onSelectForPlanning={handleSelectCitizenReportForPlanning}
-                  />
-                </motion.div>
-              )}
-
-              {/* TAB 3: WEATHER & CURING ENGINE */}
+              {/* TAB 2: WEATHER & CURING ENGINE */}
               {activeTab === 'weather' && (
                 <motion.div
                   key="weather"
@@ -280,7 +235,7 @@ export default function App() {
                 </motion.div>
               )}
 
-              {/* TAB 4: TRAFFIC & YOLO VISION */}
+              {/* TAB 3: TRAFFIC & YOLO VISION */}
               {activeTab === 'traffic' && (
                 <motion.div
                   key="traffic"
@@ -292,7 +247,7 @@ export default function App() {
                 </motion.div>
               )}
 
-              {/* TAB 5: SCHEDULING & PARETO */}
+              {/* TAB 4: SCHEDULING & PARETO */}
               {activeTab === 'scheduling' && (
                 <motion.div
                   key="scheduling"
@@ -304,7 +259,7 @@ export default function App() {
                 </motion.div>
               )}
 
-              {/* TAB 6: ROUTING & DETOURS */}
+              {/* TAB 5: ROUTING & DETOURS */}
               {activeTab === 'routing' && (
                 <motion.div
                   key="routing"
@@ -316,7 +271,7 @@ export default function App() {
                 </motion.div>
               )}
 
-              {/* TAB 7: MONTE CARLO & EVALUATION */}
+              {/* TAB 6: MONTE CARLO & EVALUATION */}
               {activeTab === 'evaluation' && (
                 <motion.div
                   key="evaluation"
@@ -328,7 +283,7 @@ export default function App() {
                 </motion.div>
               )}
 
-              {/* TAB 8: SYSTEM ANALYTICS */}
+              {/* TAB 7: SYSTEM ANALYTICS */}
               {activeTab === 'analytics' && (
                 <motion.div
                   key="analytics"
@@ -340,7 +295,7 @@ export default function App() {
                 </motion.div>
               )}
 
-              {/* TAB 9: RESEARCH COMPLIANCE AUDIT */}
+              {/* TAB 8: RESEARCH COMPLIANCE AUDIT */}
               {activeTab === 'compliance' && (
                 <motion.div
                   key="compliance"
@@ -352,7 +307,7 @@ export default function App() {
                 </motion.div>
               )}
 
-              {/* TAB 10: CLOUD HISTORY LOGS */}
+              {/* TAB 9: CLOUD HISTORY LOGS */}
               {activeTab === 'history' && (
                 <motion.div
                   key="history"
@@ -373,7 +328,7 @@ export default function App() {
                 </motion.div>
               )}
 
-              {/* TAB 11: EXTERNAL API TESTER */}
+              {/* TAB 10: EXTERNAL API TESTER */}
               {activeTab === 'tester' && (
                 <motion.div
                   key="tester"

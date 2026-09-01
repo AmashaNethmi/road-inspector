@@ -87,25 +87,8 @@ export interface AnalysisResult {
   plan: RepairPlan;
 }
 
-export interface CitizenReport {
-  id: string;
-  user: string;
-  type: 'Pothole' | 'Crack' | 'Rutting' | 'Erosion';
-  location: string;
-  coordinates: { lat: number; lng: number };
-  timestamp: string;
-  status: 'Pending Review' | 'AI Verified' | 'Scheduled' | 'Dispatched' | 'Completed';
-  severity: 'Low' | 'Medium' | 'High' | 'Critical';
-  image: string;
-  description: string;
-  actualSizeM3: number;
-  repairSizeM3: number;
-  roadType: SurfaceType;
-}
-
 export type NavigationTab = 
   | 'plan'
-  | 'citizen'
   | 'weather'
   | 'traffic'
   | 'scheduling'

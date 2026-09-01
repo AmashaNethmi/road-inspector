@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { 
   Construction, 
   LayoutDashboard, 
-  Camera, 
   CloudRain, 
   Activity, 
   Calendar, 
@@ -40,7 +39,6 @@ export default function Navigation({
       title: 'Operations',
       items: [
         { id: 'plan' as NavigationTab, label: 'Active Planning', icon: LayoutDashboard, badge: 'Core' },
-        { id: 'citizen' as NavigationTab, label: 'Citizen Ingestion', icon: Camera, badge: 'Live' },
       ]
     },
     {
